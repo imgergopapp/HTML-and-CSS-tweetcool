@@ -14,8 +14,29 @@
         </div>
         <h1>Tweetcool</h1>
         <h2>Tweets</h2>
-        <c:forEach items="${tweetList}" var="tweet">
-            ${tweet}<br>
-        </c:forEach>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Poster</th>
+                <th>Content</th>
+                <th>Date</th>
+            </tr>
+            <c:forEach items="${tweetList}" var="tweet">
+                <tr>
+                    <td>
+                        ${tweet.id}<br>
+                    </td>
+                    <td>
+                        ${tweet.poster}<br>
+                    </td>
+                    <td>
+                        ${tweet.content}<br>
+                    </td>
+                    <td>
+                        ${tweet.timestamp}<br>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
     </body>
 </html>
