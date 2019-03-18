@@ -1,6 +1,8 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.Tweet;
+import com.codecool.web.service.FormValidator;
+import com.codecool.web.service.InvalidFormException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,9 +21,17 @@ public class NewTweetServlet extends HttpServlet {
 
         String poster = request.getParameter("poster");
         String content = request.getParameter("content");
-        Tweet newTweet = new Tweet(poster,content);
-        Tweet.addToTweetList(newTweet);
-        response.sendRedirect("welcome");
+
+        try{
+            FormValidator.formCheck(poster,content);
+            Tweet newTweet = new Tweet(poster,content);
+            Tweet.addToTweetList(newTweet);
+            response.sendRedirect("welcome");
+        }
+        catch (InvalidFormException ife){
+            response.sendRedirect("error");
+        }
+
 
     }
    /* @Override
