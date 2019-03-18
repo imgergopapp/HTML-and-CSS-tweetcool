@@ -9,7 +9,7 @@ public class Tweet {
     private String poster;
     private String content;
     private Date timestamp;
-    private static int id;
+    private int id;
 
     private static int idCounter = 0;
 
@@ -30,13 +30,21 @@ public class Tweet {
         tweetList.add(tweet);
     }
 
-    @Override
-    public String toString() {
-        return "Tweet{" +
-            "poster='" + poster + "  " +
-            ", content='" + content + "  " +
-            ", timestamp=" + timestamp +
-            '}';
+    // Below methods used in tweets.jsp
+    public String getPoster() {
+        return poster;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public int getId() {
+        return id;
     }
 }
 
