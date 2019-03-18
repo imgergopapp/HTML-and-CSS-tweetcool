@@ -13,7 +13,7 @@
         <h1>Tweetcool</h1>
         <h2>Post your tweet here !</h2>
         <form method="post" action="new-tweet" id="tweetform">
-            <input type="text" placeholder="Your name" name="poster" required>
+            <input type="text" placeholder="Your name" name="poster">
             <a href="tweets.html"> <input type="submit" value="submit"></a>
         </form>
         <br>
