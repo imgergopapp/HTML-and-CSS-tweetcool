@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="topnav">
-                    <a class="active" href="welcome">Welcome</a>
+                    <a href="welcome">Welcome</a>
                     <a href="tweets">Tweets</a>
         </div>
         <h1>Tweetcool</h1>
