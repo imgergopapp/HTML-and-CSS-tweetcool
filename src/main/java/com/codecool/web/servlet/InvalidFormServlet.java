@@ -1,9 +1,5 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.model.Tweet;
-import com.codecool.web.service.FormValidator;
-import com.codecool.web.service.InvalidFormException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
