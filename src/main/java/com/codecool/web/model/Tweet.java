@@ -11,26 +11,24 @@ public class Tweet {
     private Date timestamp;
     private int id;
 
-    private static int idCounter = 0;
+    private static List<Tweet> tweetList;
+    private static List<Tweet> filteredTweetList = new ArrayList<>();
 
-    private static List<Tweet> tweetList = new ArrayList<>();
-
-    public Tweet(String name, String message) {
-        this.poster = name;
-        this.content = message;
+    public Tweet(String poster, String content) {
+        this.poster = poster;
+        this.content = content;
         timestamp = new Date();
-        id = ++idCounter;
+        id = tweetList.size() == 0 ? 1 : tweetList.get(tweetList.size() - 1).getId() + 1;
     }
 
-    public static List<Tweet> getTweetList() {
-        return tweetList;
+    public Tweet(String poster, String content, Date timestamp, int id) {
+        this.poster = poster;
+        this.content = content;
+        this.timestamp = timestamp;
+        this.id = id;
     }
 
-    public static void addToTweetList(Tweet tweet) {
-        tweetList.add(tweet);
-    }
-
-    // Below methods used in tweets.jsp
+    // Setters
     public String getPoster() {
         return poster;
     }
@@ -46,5 +44,23 @@ public class Tweet {
     public int getId() {
         return id;
     }
+
+    public static List<Tweet> getTweetList() {
+        return tweetList;
+    }
+
+    public static List<Tweet> getFilteredTweetList() {
+        return filteredTweetList;
+    }
+
+    // Getters
+    public static void setTweetList(List<Tweet> tweetList) {
+        Tweet.tweetList = tweetList;
+    }
+
+    public static void setFilteredTweetList(List<Tweet> filteredTweetList) {
+        Tweet.filteredTweetList = filteredTweetList;
+    }
+
 }
 
