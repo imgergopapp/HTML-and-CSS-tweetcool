@@ -1,6 +1,6 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.model.Tweet;
+import com.codecool.web.service.SearchFilter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +14,7 @@ public class TweetsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("tweetList", Tweet.getTweetList());
+        req.setAttribute("tweetList", SearchFilter.Filter("", "", "", ""));
         req.getRequestDispatcher("tweets.jsp").forward(req, resp);
-
     }
 }
