@@ -9,10 +9,19 @@
     </head>
     <body>
         <div class="topnav">
-            <a class="active" href="welcome">Welcome</a>
+            <a href="welcome">Welcome</a>
             <a href="tweets">Tweets</a>
         </div>
         <h1>Tweetcool</h1>
+
+        <h2>Search Filter</h2>
+        <form method="post" action="search-filter">
+            <input type="number" placeholder="limit" name="limit">
+            <input type="number" placeholder="offset" name="offset">
+            <input type="text" placeholder="poster" name="poster">
+            <input type="date" placeholder="from" name="from">
+            <a href="tweets.html"> <input type="submit" value="submit"></a>
+        </form>
         <h2>Tweets</h2>
         <table border="1">
             <tr>
