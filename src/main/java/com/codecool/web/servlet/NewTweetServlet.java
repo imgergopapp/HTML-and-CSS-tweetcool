@@ -1,8 +1,10 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.model.ExceptionMsg;
 import com.codecool.web.model.Tweet;
 import com.codecool.web.service.FormValidator;
 import com.codecool.web.service.InvalidFormException;
+import com.codecool.web.service.XmlParser;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,22 +23,34 @@ public class NewTweetServlet extends HttpServlet {
 
         String poster = request.getParameter("poster");
         String content = request.getParameter("content");
+        String redirectUrl = "welcome";
 
-        try{
-            FormValidator.formCheck(poster,content);
-            Tweet newTweet = new Tweet(poster,content);
-            Tweet.addToTweetList(newTweet);
-            response.sendRedirect("welcome");
+        try {
+            FormValidator.formCheck(poster, content);
+        } catch (InvalidFormException ife) {
+            String msg = "Invalid form ! Fill both name & tweet fields!";
+            ExceptionMsg.setMsg(msg);
+
+            redirectUrl="error";
+
         }
-        catch (InvalidFormException ife){
-            response.sendRedirect("error");
+        Tweet newTweet = new Tweet(poster, content);
+        String path = request.getServletContext().getRealPath("data.xml");
+
+        try {
+            XmlParser.write(newTweet, path);
+        } catch (IOException ioe) {
+            String msg = "Invalid data.xml! Make sure it's in the correct folder!";
+            ExceptionMsg.setMsg(msg);
+
+            redirectUrl="error";
         }
+        catch (Exception e){
+            String msg = "XmlParser Exception! ";
+            ExceptionMsg.setMsg(msg);
 
-
+            redirectUrl="error";
+        }
+        response.sendRedirect (redirectUrl);
     }
-   /* @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
-
-    }*/
 }
